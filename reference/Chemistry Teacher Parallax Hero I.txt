@@ -1,0 +1,641 @@
+# Chemistry Teacher Parallax Hero: Implementation Brief
+
+## 1. Project Goal
+
+Build a **single parallax hero section** for a chemistry teacher’s website, inspired by the Firewatch-style scrolling effect.
+
+The hero should appear as a warm, organized chemistry teacher’s grading desk viewed from a slightly elevated overhead angle. As the user scrolls, the desk objects move upward at different speeds. The objects gradually leave the viewport until only the plain warm-cream desk surface remains.
+
+That final cream surface should visually merge into the normal website content below it.
+
+The rest of the website should be a standard static layout. Only the opening hero requires the immersive parallax effect.
+
+---
+
+# 2. Core Visual Logic
+
+The Firewatch effect works because its closest foreground layer becomes a large flat block of color that matches the section below it.
+
+We will use the same principle:
+
+```text
+Full teacher desk scene
+        ↓
+Objects move upward at different speeds
+        ↓
+Closest objects leave the screen first
+        ↓
+Larger background objects leave more slowly
+        ↓
+Only the warm-cream desk surface remains
+        ↓
+Normal website content continues on the same cream background
+```
+
+The desk surface is not merely a background behind the artwork. It is the transition mechanism.
+
+Use this exact page background color:
+
+```css
+#F3EFE5
+```
+
+The first normal section beneath the hero must also use:
+
+```css
+background-color: #F3EFE5;
+```
+
+There should be no visible seam between the end of the hero and the beginning of the main site.
+
+---
+
+# 3. Scene Description
+
+The starting scene is an overhead view of a chemistry teacher’s grading desk.
+
+The desk should feel:
+
+* warm
+* academic
+* organized
+* approachable
+* chemistry-specific
+* lightly stylized rather than sterile
+
+The composition is weighted toward the upper half of the viewport. The lower portion should intentionally contain a large amount of empty cream desk surface so the transition can work cleanly.
+
+## Starting Composition
+
+### Upper-left
+
+* upright stack of chemistry books
+* atom model
+* green chemistry flask
+
+### Left-middle
+
+* safety goggles
+* pastel sticky-note stack reading `Be Curious.`
+
+### Center
+
+* stack of graded student chemistry quizzes
+* top quiz page with a prominent red circled `A-`
+
+### Upper-right
+
+* open spiral notebook containing a teacher’s chemistry lesson plan
+* coffee mug with a molecule illustration
+* yellow sticky note reading `Grading Due Friday!`
+
+### Lower-right
+
+* wooden ruler
+* red grading pen
+
+### Lower area
+
+* mostly empty warm-cream desk surface
+* optionally used for the hero title and subtitle
+
+---
+
+# 4. Hero Text
+
+Render the main text as HTML, not as part of any image.
+
+Suggested content:
+
+```text
+Mr. Carter
+Chemistry, explained clearly.
+Scroll to begin
+```
+
+Replace `Mr. Carter` with the teacher’s actual name.
+
+Recommended placement:
+
+* centered horizontally or slightly left of center
+* located within the open cream area in the lower portion of the hero
+* separated from the desk objects
+* moved slowly or kept almost fixed during the initial scroll
+
+A subtle downward arrow can sit below `Scroll to begin`.
+
+---
+
+# 5. Asset Manifest
+
+Each visual object should be stored as a separate image layer so it can move independently.
+
+## Required Layers
+
+| Logical filename            | Contents                                                          | Original generated file                                |
+| --------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------ |
+| `desk-background.webp`      | Plain warm-cream background                                       | Use CSS color instead of an image where possible       |
+| `books-stack.webp`          | Organic Chemistry, CAPE Chemistry Unit 1, CSEC Chemistry Workbook | `textbooks_in_academic_harmony.png`                    |
+| `atom-model.webp`           | Red-center atom model with black orbital rings                    | `stylized_atomic_model_on_checkerboard_background.png` |
+| `chemistry-flask.webp`      | Erlenmeyer flask containing muted green liquid                    | `erlenmeyer_flask_with_green_liquid.png`               |
+| `sticky-notes-curious.webp` | Pink, yellow and blue sticky-note stack reading `Be Curious.`     | `stacked_pastel_sticky_notes_with_message.png`         |
+| `safety-goggles.webp`       | Clear safety glasses with black arms                              | `safety_glasses_on_a_transparent_surface.png`          |
+| `quiz-stack.webp`           | Graded chemistry quiz stack with visible `A-`                     | `chemistry_quiz_with_grade_marks.png`                  |
+| `lesson-plan-notebook.webp` | Open spiral notebook with chemistry lesson plan                   | `chemistry_lesson_plan_on_acid_base_titration.png`     |
+| `red-pen.webp`              | Red grading pen                                                   | `red_pen_on_checkered_background.png`                  |
+| `grading-note.webp`         | Yellow note reading `Grading Due Friday!`                         | `grading_due_friday_sticky_note.png`                   |
+| `wooden-ruler.webp`         | Light wooden metric ruler                                         | `wooden_ruler_with_metric_markings.png`                |
+| `coffee-mug.webp`           | Beige mug with molecule illustration and coffee                   | `ceramic_mug_with_molecular_drawing.png`               |
+
+---
+
+# 6. Important Asset-Preparation Step
+
+The generated files currently show a checkerboard pattern, but the checkerboard appears to be baked into the image rather than stored as true transparency.
+
+Before using them in the website:
+
+1. Remove the checkerboard background from each object.
+2. Preserve the object and its soft shadow.
+3. Export each asset with a true alpha channel.
+4. Save the processed files as transparent WebP files where supported.
+5. Keep transparent PNG versions as fallbacks if necessary.
+
+Use WebP for production because the artwork is relatively detailed and multiple layers will load simultaneously.
+
+Recommended output:
+
+```text
+public/
+  images/
+    chemistry-hero/
+      books-stack.webp
+      atom-model.webp
+      chemistry-flask.webp
+      sticky-notes-curious.webp
+      safety-goggles.webp
+      quiz-stack.webp
+      lesson-plan-notebook.webp
+      red-pen.webp
+      grading-note.webp
+      wooden-ruler.webp
+      coffee-mug.webp
+```
+
+Do not flatten the full composition into one image. The individual files are necessary for the depth effect.
+
+---
+
+# 7. DOM Structure
+
+Use one hero wrapper with a sticky viewport inside it.
+
+```text
+chemistry-hero
+├── sticky-stage
+│   ├── desk-background
+│   ├── books-stack
+│   ├── atom-model
+│   ├── chemistry-flask
+│   ├── safety-goggles
+│   ├── sticky-notes-curious
+│   ├── quiz-stack
+│   ├── lesson-plan-notebook
+│   ├── coffee-mug
+│   ├── grading-note
+│   ├── wooden-ruler
+│   ├── red-pen
+│   └── hero-copy
+└── scroll-spacer
+```
+
+The outer hero should be taller than one viewport so scrolling creates a controlled animation timeline.
+
+Suggested initial value:
+
+```css
+height: 220vh;
+```
+
+The inner stage should remain pinned while the user scrolls through that range:
+
+```css
+position: sticky;
+top: 0;
+height: 100vh;
+overflow: hidden;
+background: #F3EFE5;
+```
+
+After the hero ends, the normal website begins on the same background color.
+
+---
+
+# 8. Layer Order
+
+Use the following approximate stacking order from back to front.
+
+| Z-index | Layer                           |
+| ------: | ------------------------------- |
+|       0 | Cream desk background           |
+|      10 | Books                           |
+|      12 | Atom model                      |
+|      14 | Flask                           |
+|      20 | Coffee mug                      |
+|      22 | Grading reminder sticky note    |
+|      30 | Lesson-plan notebook            |
+|      35 | Quiz stack                      |
+|      40 | Safety goggles                  |
+|      45 | `Be Curious.` sticky-note stack |
+|      50 | Wooden ruler                    |
+|      55 | Red grading pen                 |
+|      70 | Hero text                       |
+|      80 | Scroll indicator                |
+
+This order can be adjusted slightly after visual testing. The main rule is that the pen, ruler and smaller loose items should feel closest to the viewer.
+
+---
+
+# 9. Initial Placement
+
+Use absolute positioning inside the sticky stage.
+
+These are starting values for a desktop mockup. Adjust during visual refinement.
+
+| Asset                | Approximate placement         | Approximate width |
+| -------------------- | ----------------------------- | ----------------: |
+| Books                | top-left edge, partly cropped |            `12vw` |
+| Atom model           | upper-left beside books       |             `9vw` |
+| Flask                | upper-left-center             |             `8vw` |
+| Safety goggles       | left-middle                   |            `17vw` |
+| Curious sticky notes | lower-left-middle             |            `10vw` |
+| Quiz stack           | upper-middle-center           |            `25vw` |
+| Notebook             | upper-right-center            |            `27vw` |
+| Mug                  | top-right                     |            `11vw` |
+| Grading note         | right-middle                  |             `8vw` |
+| Ruler                | lower-right, diagonal         |            `22vw` |
+| Red pen              | below ruler                   |            `15vw` |
+
+Avoid crowding the lower center of the composition. Keep that region open for text and for the final transition.
+
+---
+
+# 10. Scroll Behavior
+
+Track the user’s progress through the hero as a value from `0` to `1`.
+
+```text
+0.0 = user is at the top of the hero
+1.0 = user has reached the end of the hero
+```
+
+Each layer should move upward at a different rate.
+
+## Recommended Translation Values
+
+| Layer                | Upward movement by the end of the hero | Visual purpose                                             |
+| -------------------- | -------------------------------------: | ---------------------------------------------------------- |
+| Desk background      |                                  `0px` | Remains stationary and becomes the next section background |
+| Books                |                               `-180px` | Slow back-layer motion                                     |
+| Atom model           |                               `-240px` | Slow back-layer motion                                     |
+| Flask                |                               `-280px` | Slow-to-medium motion                                      |
+| Mug                  |                               `-300px` | Slow-to-medium motion                                      |
+| Lesson-plan notebook |                               `-430px` | Medium motion                                              |
+| Quiz stack           |                               `-500px` | Main focal layer                                           |
+| Safety goggles       |                               `-560px` | Foreground motion                                          |
+| Curious sticky notes |                               `-620px` | Foreground motion                                          |
+| Grading sticky note  |                               `-560px` | Foreground motion                                          |
+| Ruler                |                               `-700px` | Fast foreground motion                                     |
+| Red grading pen      |                               `-780px` | Fastest foreground motion                                  |
+
+These values should be adapted to the final hero height and viewport size. The objective is more important than the exact numbers:
+
+* near objects should move farther
+* distant objects should move less
+* every object should be gone or nearly gone by the end
+* the desk background should remain
+
+## Optional Secondary Transformations
+
+Add small scale or rotation changes sparingly.
+
+| Layer                | Optional enhancement         |
+| -------------------- | ---------------------------- |
+| Atom model           | rotate `-2deg` to `2deg`     |
+| Curious sticky notes | rotate slightly while moving |
+| Red pen              | rotate by `2deg`             |
+| Ruler                | rotate by `-1deg`            |
+| Quiz stack           | scale from `1` to `1.03`     |
+| Notebook             | scale from `1` to `1.02`     |
+
+Avoid excessive animation. This should feel polished, not like floating objects in a game interface.
+
+---
+
+# 11. Scroll Timeline
+
+## Phase 1: Initial Scene
+
+**Progress: `0.0–0.2`**
+
+* full desk composition visible
+* hero title visible in the open cream area
+* subtle scroll arrow visible
+* only very small layer movement
+
+## Phase 2: Desk Comes Alive
+
+**Progress: `0.2–0.5`**
+
+* pen and ruler begin moving upward quickly
+* sticky notes and goggles drift upward
+* quiz stack and notebook move more slowly
+* hero copy fades or moves upward slightly
+
+## Phase 3: Main Objects Clear
+
+**Progress: `0.5–0.8`**
+
+* pen, ruler and smaller notes leave the viewport
+* goggles exit
+* quiz stack and notebook continue upward
+* mug, books, flask and atom model remain briefly visible
+
+## Phase 4: Transition to Main Site
+
+**Progress: `0.8–1.0`**
+
+* remaining objects leave the frame
+* cream background is fully exposed
+* next section content begins fading in
+* user should not notice a hard edge between hero and site body
+
+---
+
+# 12. Main-Site Transition
+
+The normal website content should begin directly beneath the sticky hero.
+
+```text
+hero ends
+↓
+cream background continues uninterrupted
+↓
+introductory content fades into view
+```
+
+The first body section could include:
+
+* teacher introduction
+* courses taught
+* resources
+* recent lesson materials
+* contact details
+
+Do not insert a dark separator, large border, or abrupt background change immediately after the hero.
+
+A subtle fade-in or upward reveal for the first content block is enough.
+
+---
+
+# 13. Technical Approach
+
+Any modern frontend stack is acceptable.
+
+A practical approach:
+
+* React or Next.js
+* CSS absolute positioning
+* CSS transforms for GPU-accelerated movement
+* `requestAnimationFrame` for scroll updates
+* optional GSAP ScrollTrigger if already installed
+
+Use transforms rather than repeatedly changing layout properties:
+
+```css
+transform: translate3d(0, var(--offset-y), 0);
+will-change: transform;
+```
+
+Avoid using:
+
+```css
+top
+margin-top
+height
+```
+
+for animation updates because they trigger layout recalculation more often.
+
+## Implementation Strategy
+
+1. Measure the outer hero section.
+2. Calculate scroll progress from `0` to `1`.
+3. Store the progress in a CSS custom property or animation state.
+4. Convert progress into a transform value for each layer.
+5. Apply translation and optional rotation or scale.
+6. Clamp values between the beginning and end of the hero.
+7. Use `requestAnimationFrame` to prevent excessive scroll-event updates.
+
+---
+
+# 14. Responsive Behavior
+
+## Desktop
+
+Use the complete layered composition.
+
+Target widths:
+
+```text
+1440px+
+1024px–1439px
+```
+
+Maintain the full visual arrangement but scale assets proportionally.
+
+## Tablet
+
+Keep the main narrative objects:
+
+* books
+* atom model
+* flask
+* quiz stack
+* notebook
+* mug
+* pen
+* ruler
+
+Potentially remove:
+
+* one sticky-note asset
+* goggles if the scene becomes crowded
+
+## Mobile
+
+Reduce the scene substantially.
+
+Recommended mobile layers:
+
+* books
+* flask
+* quiz stack
+* notebook
+* pen
+* cream background
+* hero copy
+
+Use a shorter hero:
+
+```css
+height: 170vh;
+```
+
+The mobile version should preserve the effect without forcing too many small details into the viewport.
+
+---
+
+# 15. Performance Requirements
+
+The hero contains multiple images, so optimization matters.
+
+## Asset Guidelines
+
+* use transparent WebP where possible
+* target `100–250 KB` per object where feasible
+* keep the total hero asset payload below approximately `2 MB`
+* use dimensions appropriate to actual display size
+* preload the most visible opening assets
+* lazy-load lower-priority assets only if they are not immediately visible
+
+Preload priority assets:
+
+```text
+books-stack.webp
+atom-model.webp
+chemistry-flask.webp
+quiz-stack.webp
+lesson-plan-notebook.webp
+```
+
+## Animation Guidelines
+
+* use GPU transforms
+* use `requestAnimationFrame`
+* avoid excessive blur filters
+* avoid continuously animated decorative effects
+* test on mobile Safari and Chrome
+
+---
+
+# 16. Accessibility
+
+Respect reduced-motion settings.
+
+When the user has enabled reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  /* Disable or greatly reduce parallax transforms */
+}
+```
+
+Reduced-motion version:
+
+* show the static initial composition
+* use a simple fade into the next section
+* avoid large object translations
+
+Hero copy should remain real HTML text with sufficient contrast against `#F3EFE5`.
+
+---
+
+# 17. Acceptance Criteria
+
+The implementation is complete when all of the following are true:
+
+## Visual
+
+* the hero opens with a coherent chemistry-teacher grading desk scene
+* objects appear to belong to the same perspective and lighting environment
+* objects move upward at visibly different speeds
+* foreground objects move faster than background objects
+* the bottom of the scroll resolves into a clean cream surface
+* the next section uses the same cream color
+* there is no abrupt visual seam between hero and page body
+
+## Functional
+
+* scrolling feels smooth on desktop and mobile
+* no object jumps unexpectedly
+* text remains readable
+* normal website content is accessible immediately after the animation
+* reduced-motion mode works
+* hero does not block navigation or keyboard access
+
+## Performance
+
+* total asset payload is controlled
+* movement remains smooth under normal mobile conditions
+* no layout shifts occur while assets load
+* all images have explicit dimensions or aspect ratios
+
+---
+
+# 18. Recommended Build Order
+
+The coding agent should implement this in stages.
+
+## Stage 1: Static Composition
+
+* create the cream sticky hero stage
+* place all processed transparent assets
+* match the planned desk composition
+* add hero text
+* validate desktop layout
+
+## Stage 2: Basic Parallax
+
+* add scroll-progress calculation
+* animate vertical movement only
+* confirm that the cream desk background remains fixed
+* confirm that all objects leave the viewport cleanly
+
+## Stage 3: Refinement
+
+* add subtle rotation and scale variation
+* refine individual speeds
+* fade hero text at the correct time
+* add the transition into the first normal section
+
+## Stage 4: Responsive Layout
+
+* adjust tablet placement
+* simplify mobile layout
+* test cropping and scaling
+
+## Stage 5: Optimization
+
+* compress assets
+* add preload strategy
+* add reduced-motion mode
+* test browser performance
+
+---
+
+# 19. Concise Prompt for the Coding Agent
+
+```text
+Build a Firewatch-inspired parallax hero section for a chemistry teacher website.
+
+The hero is a warm, slightly overhead view of a chemistry teacher’s grading desk. Use individual transparent image layers for books, an atom model, a green chemistry flask, safety goggles, sticky notes, graded quiz papers, an open lesson-plan notebook, a coffee mug, a wooden ruler, and a red grading pen.
+
+The hero section should be approximately 220vh tall with a sticky 100vh viewport. The stage background must be #F3EFE5. Position the desk objects primarily in the upper half of the scene, leaving a large uncluttered cream area below.
+
+As the user scrolls, calculate a normalized progress value from 0 to 1. Move each object upward with CSS transforms at different speeds. Foreground items such as the red pen, ruler, goggles, and sticky notes should move upward fastest. Middle layers such as the quiz stack and notebook should move at moderate speeds. Back layers such as books, atom model, flask, and mug should move more slowly. The cream background must remain stationary.
+
+By the end of the hero, all desk objects should have exited upward, leaving only the #F3EFE5 background. The first normal website section should use the same background color so the transition is seamless.
+
+Render the teacher’s name, subtitle, and scroll prompt as HTML text rather than baked into an image. Use GPU-accelerated translate3d transforms, requestAnimationFrame or GSAP ScrollTrigger, responsive layouts, optimized WebP assets, and a reduced-motion fallback.
+```

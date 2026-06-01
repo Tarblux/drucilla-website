@@ -1,0 +1,196 @@
+## Parallax Hero Asset List
+
+Generate each item as a separate transparent PNG or SVG so it can move independently.
+
+### 1. Base Background
+
+| File                  | Contents                      | Notes                                                                                                         |
+| --------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `desk-background.png` | Plain warm cream desk surface | Use `#F3EFE5`. This should fill the entire hero and match the background of the normal website section below. |
+
+---
+
+## Main Object Layers
+
+### 2. Back-Left Academic Objects
+
+| File                  | Contents                                      | Notes                                               |
+| --------------------- | --------------------------------------------- | --------------------------------------------------- |
+| `books-stack.png`     | 3–4 upright chemistry textbooks               | Use muted green, brown, and dark-blue book spines.  |
+| `atom-model.png`      | Small atom or molecular model toy             | Place near the books. Keep the silhouette readable. |
+| `chemistry-flask.png` | Small Erlenmeyer flask with pale green liquid | Use subtle glass reflections.                       |
+
+These can be grouped into one combined file if they will move together:
+
+```text
+back-left-group.png
+```
+
+---
+
+### 3. Back-Right Desk Objects
+
+| File                        | Contents                                 | Notes                          |
+| --------------------------- | ---------------------------------------- | ------------------------------ |
+| `coffee-mug.png`            | Coffee mug with a small molecule graphic | Avoid overly detailed text.    |
+| `grading-reminder-note.png` | Yellow sticky note with a short reminder | Example: “Grading due Friday”. |
+
+These can also be combined:
+
+```text
+back-right-group.png
+```
+
+---
+
+### 4. Main Quiz Stack
+
+| File                  | Contents                                                                  | Notes                                                                                       |
+| --------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `quiz-stack.png`      | Stack of student chemistry quizzes                                        | Slightly offset papers underneath.                                                          |
+| `top-graded-quiz.png` | Top quiz page with chemistry questions, red checkmarks, and a large grade | Keep this separate only if you want it to move or tilt slightly differently from the stack. |
+
+The top quiz should include:
+
+* a clear heading such as `Chemistry Quiz`
+* 2–4 simple chemistry questions
+* red checkmarks
+* one visible grade, such as `A-`
+* a few handwritten notes
+
+---
+
+### 5. Notebook Layer
+
+| File                | Contents                             | Notes                                                                 |
+| ------------------- | ------------------------------------ | --------------------------------------------------------------------- |
+| `open-notebook.png` | Spiral notebook with chemistry notes | Include a simple graph, formula, and a few handwritten bullet points. |
+
+Suggested page content:
+
+* acid-base titration notes
+* pH graph
+* one equation
+* a few short handwritten annotations
+
+---
+
+### 6. Middle Accessory Layers
+
+| File                  | Contents             | Notes                                 |
+| --------------------- | -------------------- | ------------------------------------- |
+| `safety-goggles.png`  | Clear safety goggles | Slightly angled, with a clean shadow. |
+| `wooden-ruler.png`    | Wooden ruler         | Place diagonally to create movement.  |
+| `red-grading-pen.png` | Red pen              | Use as a strong accent color.         |
+
+Keep these separate because they can move at different speeds.
+
+---
+
+### 7. Sticky Notes
+
+| File                    | Contents                    | Notes                                 |
+| ----------------------- | --------------------------- | ------------------------------------- |
+| `sticky-notes-left.png` | Small stack of pastel notes | Suggested text: `Be curious.`         |
+| `sticky-note-right.png` | Single yellow reminder note | Suggested text: `Grading due Friday.` |
+
+These are optional but useful for adding personality.
+
+---
+
+## Optional Supporting Assets
+
+### 8. Periodic Table Sheet
+
+| File                       | Contents                               | Notes                                               |
+| -------------------------- | -------------------------------------- | --------------------------------------------------- |
+| `periodic-table-sheet.png` | Printed periodic table reference sheet | Place partly underneath the quiz stack or notebook. |
+
+Only use this if the composition does not feel too crowded.
+
+---
+
+### 9. Loose Paper Details
+
+| File                  | Contents                              | Notes                       |
+| --------------------- | ------------------------------------- | --------------------------- |
+| `loose-worksheet.png` | Partially visible chemistry worksheet | Use beneath the quiz stack. |
+| `paperclip-group.png` | A few paperclips or binder clips      | Optional minor detail.      |
+
+These should be subtle. They are not essential parallax layers.
+
+---
+
+## Text and UI Elements
+
+Do not bake these into the images. Render them as normal HTML text.
+
+| Element          | Suggested text                  |
+| ---------------- | ------------------------------- |
+| Teacher name     | `Mr. Carter`                    |
+| Subtitle         | `Chemistry, explained clearly.` |
+| Scroll prompt    | `Scroll to begin`               |
+| Small arrow icon | Downward chevron                |
+
+This keeps the text crisp and easy to update.
+
+---
+
+## Recommended Production Set
+
+You do not need every object as its own file. A practical final set would be:
+
+```text
+01-desk-background.png
+02-back-left-group.png
+03-back-right-group.png
+04-quiz-stack.png
+05-top-graded-quiz.png
+06-open-notebook.png
+07-safety-goggles.png
+08-wooden-ruler.png
+09-red-grading-pen.png
+10-sticky-notes-left.png
+11-periodic-table-sheet.png
+```
+
+That gives you **11 image layers**, plus the HTML text overlay.
+
+---
+
+## Suggested Layer Order
+
+From back to front:
+
+```text
+1. desk-background.png
+2. back-left-group.png
+3. back-right-group.png
+4. periodic-table-sheet.png
+5. quiz-stack.png
+6. top-graded-quiz.png
+7. open-notebook.png
+8. safety-goggles.png
+9. wooden-ruler.png
+10. sticky-notes-left.png
+11. red-grading-pen.png
+12. HTML text overlay
+```
+
+---
+
+## Simplified Version
+
+For an easier first version, reduce the scene to 7 image assets:
+
+```text
+01-desk-background.png
+02-back-left-group.png
+03-back-right-group.png
+04-quiz-stack-with-top-page.png
+05-open-notebook.png
+06-safety-goggles.png
+07-ruler-and-red-pen.png
+```
+
+This is enough to create a convincing parallax effect while keeping implementation manageable.

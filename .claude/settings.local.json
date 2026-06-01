@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx vite *)",
+      "Bash(Start-Sleep -Seconds 4)",
+      "Bash(Get-Content \"C:\\\\Users\\\\tarbl\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-tarbl-Documents-Software-Dev--Projects-drucilla-website\\\\d0b37195-355e-41a9-a182-3675154a4d27\\\\tasks\\\\b5er28jtb.output\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

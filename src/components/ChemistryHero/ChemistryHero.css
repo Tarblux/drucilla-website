@@ -1,0 +1,82 @@
+.chemistry-hero {
+  position: relative;
+  height: var(--hero-height);
+  width: 100%;
+}
+
+.sticky-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-cream);
+}
+
+/* Hero copy ---------------------------------------------------- */
+.hero-copy {
+  position: absolute;
+  bottom: 16vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 70;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  color: var(--color-ink-muted);
+  margin-bottom: 2rem;
+}
+
+.hero-scroll-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  opacity: 0.65;
+}
+
+.scroll-arrow {
+  display: block;
+  font-size: 1.1rem;
+  animation: bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+/* Reduced motion ------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow {
+    animation: none;
+  }
+
+  .parallax-layer {
+    transform: none !important;
+  }
+}
+
+/* Mobile -------------------------------------------------------- */
+@media (max-width: 768px) {
+  .chemistry-hero {
+    height: 170vh;
+  }
+}

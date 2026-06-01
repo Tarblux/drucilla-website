@@ -1,8 +1,8 @@
 import { animated } from '@react-spring/web'
 
 export default function ParallaxLayer({ scrollYProgress, config, reducedMotion }) {
-  const { id, zIndex, maxY, width, style, placeholderColor, placeholderHeight, label, baseTransform } =
-    config
+  const { id, zIndex, maxY, width, style, src, label, baseTransform,
+          placeholderColor, placeholderHeight } = config
 
   const transform = reducedMotion
     ? baseTransform || 'none'
@@ -24,23 +24,32 @@ export default function ParallaxLayer({ scrollYProgress, config, reducedMotion }
       }}
       aria-hidden="true"
     >
-      <div
-        style={{
-          width: '100%',
-          height: placeholderHeight,
-          backgroundColor: placeholderColor,
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '0.6rem',
-          color: 'rgba(0,0,0,0.45)',
-          opacity: 0.75,
-          userSelect: 'none',
-        }}
-      >
-        {label}
-      </div>
+      {src ? (
+        <img
+          src={src}
+          alt=""
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+          draggable="false"
+        />
+      ) : (
+        <div
+          style={{
+            width: '100%',
+            height: placeholderHeight,
+            backgroundColor: placeholderColor,
+            borderRadius: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '0.6rem',
+            color: 'rgba(0,0,0,0.45)',
+            opacity: 0.75,
+            userSelect: 'none',
+          }}
+        >
+          {label}
+        </div>
+      )}
     </animated.div>
   )
 }

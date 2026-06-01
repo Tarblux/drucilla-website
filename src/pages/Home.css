@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 
-.home-intro h2 {
+.home-intro__heading {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 400;
@@ -17,19 +17,64 @@
   color: var(--color-ink);
 }
 
-.home-intro p {
+.home-intro__lead {
   font-size: 1.125rem;
   line-height: 1.8;
   color: var(--color-ink-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.home-block {
+  margin-bottom: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e0d6;
+}
+
+.home-block:last-child {
+  margin-bottom: 0;
+}
+
+.home-block__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1.25rem;
+}
+
+.home-block p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+  margin-bottom: 1.25rem;
+}
+
+.home-block p:last-child {
+  margin-bottom: 0;
 }
 
 .home-philosophy {
-  border-left: 3px solid rgba(44, 44, 44, 0.15);
+  border-left: 3px solid #c0392b;
   padding-left: 1.5rem;
+  margin: 0 0 1.25rem;
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.1rem;
-  color: var(--color-ink-muted);
+  font-size: 1.15rem;
+  color: var(--color-ink);
   line-height: 1.7;
+}
+
+.home-about-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  border-bottom: 1px solid rgba(44, 44, 44, 0.25);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.home-about-link:hover {
+  color: #c0392b;
+  border-bottom-color: #c0392b;
 }

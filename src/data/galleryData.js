@@ -32,7 +32,7 @@ const WHATSAPP_IMAGES = [
 ]
 
 function publicImage(filename) {
-  return `/images/${encodeURIComponent(filename)}`
+  return `${import.meta.env.BASE_URL}images/${encodeURIComponent(filename)}`
 }
 
 function hashString(str) {

@@ -1,4 +1,5 @@
 import './Contact.css'
+import { assetUrl } from '@/utils/assetUrl'
 
 export default function Contact() {
   return (
@@ -20,7 +21,7 @@ export default function Contact() {
             <h2 className="contact-label">School affiliation</h2>
             <p className="contact-school">Montego Bay High School</p>
             <img
-              src="/images/MBHS-Logo.webp"
+              src={assetUrl('images/MBHS-Logo.webp')}
               alt="Montego Bay High School logo"
               className="contact-logo"
             />

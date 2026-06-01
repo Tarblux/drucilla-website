@@ -4,10 +4,12 @@
 // baseTransform: static rotation/scale applied on top of the scroll translate
 // placeholderColor/Height: used until real WebP assets are placed
 
+import { assetUrl } from '@/utils/assetUrl'
+
 export const LAYERS = [
   {
     id: 'books',
-    src: '/images/chemistry-hero/books-stack.webp',
+    src: assetUrl('images/chemistry-hero/books-stack.webp'),
     zIndex: 10,
     maxY: -180,
     width: '34vw',
@@ -43,7 +45,7 @@ export const LAYERS = [
   // },
   {
     id: 'grading-note',
-    src: '/images/chemistry-hero/sticky-notes-2.webp',
+    src: assetUrl('images/chemistry-hero/sticky-notes-2.webp'),
     zIndex: 22,
     maxY: -560,
     width: '12vw',
@@ -52,7 +54,7 @@ export const LAYERS = [
   },
   {
     id: 'lesson-plan-notebook',
-    src: '/images/chemistry-hero/lesson-plan.webp',
+    src: assetUrl('images/chemistry-hero/lesson-plan.webp'),
     zIndex: 30,
     maxY: -430,
     width: '40vw',
@@ -61,7 +63,7 @@ export const LAYERS = [
   },
   {
     id: 'quiz-stack',
-    src: '/images/chemistry-hero/quiz-stack.webp',
+    src: assetUrl('images/chemistry-hero/quiz-stack.webp'),
     zIndex: 35,
     maxY: -500,
     width: '40vw',
@@ -88,7 +90,7 @@ export const LAYERS = [
   // },
   {
     id: 'wooden-ruler',
-    src: '/images/chemistry-hero/ruler.webp',
+    src: assetUrl('images/chemistry-hero/ruler.webp'),
     zIndex: 50,
     maxY: -700,
     width: '35vw',
@@ -98,7 +100,7 @@ export const LAYERS = [
   },
   {
     id: 'red-pen',
-    src: '/images/chemistry-hero/red-pen.webp',
+    src: assetUrl('images/chemistry-hero/red-pen.webp'),
     zIndex: 55,
     maxY: -780,
     width: '24vw',

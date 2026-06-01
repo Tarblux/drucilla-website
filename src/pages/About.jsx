@@ -1,4 +1,5 @@
 import './About.css'
+import { assetUrl } from '@/utils/assetUrl'
 
 export default function About() {
   return (
@@ -7,7 +8,7 @@ export default function About() {
 
         <div className="about-photo-panel">
           <img
-            src="/images/about-me.webp"
+            src={assetUrl('images/about-me.webp')}
             alt="Drucilla A. Williams"
             className="about-photo"
           />

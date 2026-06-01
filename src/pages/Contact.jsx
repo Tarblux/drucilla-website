@@ -1,14 +1,32 @@
+import './Contact.css'
+
 export default function Contact() {
   return (
-    <div className="page">
-      <h1>Contact</h1>
-      <p>
-        Professional email:{' '}
-        <a href="mailto:drucilla.williams@moeschools.edu.jm">
-          drucilla.williams@moeschools.edu.jm
-        </a>
-      </p>
-      <p style={{ marginTop: '0.75rem' }}>Montego Bay High School</p>
+    <div className="contact-page">
+      <div className="contact-card">
+        <h1 className="contact-heading">
+          Contact<span className="contact-heading-dot">.</span>
+        </h1>
+
+        <div className="contact-details">
+          <div className="contact-item">
+            <h2 className="contact-label">Email</h2>
+            <a href="mailto:drucilla.williams@moeschools.edu.jm" className="contact-link">
+              drucilla.williams@moeschools.edu.jm
+            </a>
+          </div>
+
+          <div className="contact-item">
+            <h2 className="contact-label">School affiliation</h2>
+            <p className="contact-school">Montego Bay High School</p>
+            <img
+              src="/images/MBHS-Logo.webp"
+              alt="Montego Bay High School logo"
+              className="contact-logo"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

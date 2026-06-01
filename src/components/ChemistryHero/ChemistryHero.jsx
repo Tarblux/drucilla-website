@@ -22,7 +22,7 @@ export default function ChemistryHero() {
 
         <div className="hero-copy">
           <h1 className="hero-name">Ms. Williams</h1>
-          <p className="hero-subtitle">Chemistry, explained clearly.</p>
+          <p className="hero-subtitle">Helping Students Find Clarity in Science</p>
           <p className="hero-scroll-prompt">
             Scroll to begin
             <span className="scroll-arrow" aria-hidden="true">↓</span>

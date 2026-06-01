@@ -1,0 +1,89 @@
+.contact-page {
+  min-height: calc(100vh - var(--nav-height));
+  padding: calc(var(--nav-height) + 2.5rem) 2rem 4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.contact-card {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08);
+}
+
+.contact-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 2rem;
+  line-height: 1.15;
+}
+
+.contact-heading-dot {
+  color: #c0392b;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-item {
+  padding-top: 2rem;
+  border-top: 1px solid #ece8df;
+}
+
+.contact-item:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.contact-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.contact-link {
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  border-bottom: 1px solid rgba(44, 44, 44, 0.2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: #c0392b;
+  border-bottom-color: #c0392b;
+}
+
+.contact-school {
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  margin-bottom: 1.25rem;
+}
+
+.contact-logo {
+  width: min(200px, 70%);
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .contact-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .contact-card {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+}

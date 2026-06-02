@@ -14,7 +14,7 @@ export default function Gallery() {
           Gallery<span className="gallery-heading-dot">.</span>
         </h1>
         <p className="gallery-intro">
-          Classroom activities, experiments, presentations, and event photos.
+          School events, experiments, and presentations.
         </p>
 
         <div className="gallery-filters" role="tablist" aria-label="Gallery sections">

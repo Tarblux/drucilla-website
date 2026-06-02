@@ -1,0 +1,306 @@
+.teaching-page {
+  min-height: calc(100vh - var(--nav-height));
+  background-color: var(--color-cream);
+  padding: calc(var(--nav-height) + 3rem) 2rem 5rem;
+}
+
+.teaching-page__container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.teaching-page__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--color-ink);
+  margin-bottom: 1.5rem;
+}
+
+.teaching-page__lead {
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: var(--color-ink-muted);
+  margin-bottom: 3.5rem;
+}
+
+.teaching-page__lead strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* ── Approach section ────────────────────────────────── */
+
+.teaching-approach-section {
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e0d6;
+}
+
+.teaching-approach-section__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1rem;
+}
+
+.teaching-approach-section__intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+  margin-bottom: 2.5rem;
+}
+
+.teaching-approaches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.teaching-approach {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+}
+
+.teaching-approach__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #c0392b;
+  display: inline-block;
+}
+
+.teaching-approach p {
+  font-size: 0.975rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+}
+
+.teaching-approach p strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* ── Approach in action ──────────────────────────────── */
+
+.teaching-action-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e0d6;
+}
+
+.teaching-action-section__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1.75rem;
+}
+
+.teaching-action {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.teaching-action__video-wrap {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+}
+
+.teaching-action__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1a1a1a;
+}
+
+.teaching-action__video-caption {
+  padding: 0.85rem 1.15rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+  font-style: italic;
+  border-top: 1px solid #ece8df;
+}
+
+.teaching-action__content p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--color-ink-muted);
+  margin-bottom: 1.15rem;
+}
+
+.teaching-action__content p:last-child {
+  margin-bottom: 0;
+}
+
+.teaching-action__lead {
+  font-size: 1.05rem;
+}
+
+.teaching-action__lead strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.teaching-equation-block {
+  margin: 1.25rem 0;
+  padding: 1.15rem 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 3px solid #c0392b;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+.teaching-equation-block__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #999;
+  margin-bottom: 0.6rem;
+}
+
+.teaching-equation {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0;
+  overflow-x: auto;
+}
+
+.teaching-equation sub,
+.teaching-equation sup {
+  font-size: 0.75em;
+}
+
+/* ── Resources section ───────────────────────────────── */
+
+.teaching-resources-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e0d6;
+}
+
+.teaching-resources-section__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1rem;
+}
+
+.teaching-resources-section__intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-ink-muted);
+  margin-bottom: 1.75rem;
+}
+
+.teaching-resources {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.teaching-resource-link {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.teaching-resource-link:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.teaching-resource-link__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  background: #f5f2eb;
+  border-bottom: 1px solid #ece8df;
+}
+
+.teaching-resource-link__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.teaching-resource-link__title {
+  font-weight: 600;
+  color: var(--color-ink);
+  font-size: 0.975rem;
+  line-height: 1.45;
+}
+
+.teaching-resource-link:hover .teaching-resource-link__title {
+  color: #c0392b;
+}
+
+.teaching-resource-link__type {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+
+.teaching-resource-link__type[data-type='PDF'] {
+  color: #8f5252;
+  background: #f9ecec;
+}
+
+.teaching-resource-link__type[data-type='PowerPoint'] {
+  color: #8a6038;
+  background: #f8f0e6;
+}
+
+.teaching-resource-link__type[data-type='Lesson Plan'] {
+  color: #4a6d52;
+  background: #edf3ee;
+}
+
+.teaching-resource-link__type[data-type='Test'] {
+  color: #4a5f7a;
+  background: #ecf0f6;
+}
+
+@media (max-width: 700px) {
+  .teaching-approaches {
+    grid-template-columns: 1fr;
+  }
+
+  .teaching-action {
+    grid-template-columns: 1fr;
+  }
+
+  .teaching-resources {
+    grid-template-columns: 1fr;
+  }
+
+  .teaching-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
